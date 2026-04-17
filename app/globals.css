@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black:   #080808;
+  --deep:    #0d0d0d;
+  --panel:   #111111;
+  --border:  #1e1e1e;
+  --muted:   #333333;
+  --soft:    #888888;
+  --light:   #cccccc;
+  --white:   #f5f5f0;
+  --gold:    #c9a84c;
+  --gold-lt: #e8c97a;
+  --gold-dk: #8a6825;
+}
+
+body { cursor: none; }
+a, button, [data-cursor] { cursor: none; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--light);
+  overflow-x: hidden;
+}
+
+/* ── Noise overlay ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--gold-dk); border-radius: 0; }
+
+/* ── Cursor ── */
+.cursor-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.06s;
+}
+.cursor-ring {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  position: fixed; top: 0; left: 0; z-index: 9998;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease;
+}
+.cursor-ring.active {
+  transform: translate(-50%, -50%) scale(1.8);
+  border-color: var(--gold);
+}
+
+/* ── Section tag ── */
+.section-tag {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+.section-tag::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+
+/* ── Scroll animation ── */
+@keyframes scrollBar {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+.scroll-bar { animation: scrollBar 2.2s ease-in-out infinite; }
+
+/* ── Hero gradient text ── */
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+.text-gold-shimmer {
+  background: linear-gradient(90deg, #b8860b 0%, #ffd700 30%, #fce97f 50%, #ffd700 70%, #b8860b 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ── Project card thumb overlay ── */
+.thumb-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.7) 0%, transparent 50%);
+  transition: opacity 0.4s;
+}
+
+/* ── Hide custom cursor on touch/mobile devices ── */
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto !important; }
+  a, button, [data-cursor] { cursor: pointer !important; }
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
