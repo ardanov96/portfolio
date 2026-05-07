@@ -79,7 +79,7 @@ export default function About() {
             className="space-y-5 text-soft leading-[1.9]"
           >
             {[
-              <>I'm <span className="text-light font-medium">Bagus Putu Ardha Putra Putra</span>, a self-driven Full Stack Developer based in Denpasar, Bali. I started my journey in 2018 as a backend developer and have since evolved into a versatile engineer capable of owning entire product lifecycles — from database architecture to polished frontend experiences.</>,
+              <>I'm <span className="text-light font-medium">Bagus Putu Ardha Krishna Putra</span>, a self-driven Full Stack Developer based in Denpasar, Bali. I started my journey in 2018 as a backend developer and have since evolved into a versatile engineer capable of owning entire product lifecycles — from database architecture to polished frontend experiences.</>,
               <>Over 8 years, I've delivered solutions across <span className="text-light">FinTech</span>, <span className="text-light">automotive</span>, <span className="text-light">hospitality</span>, <span className="text-light">logistics</span>, and <span className="text-light">travel tech</span> — working solo or leading small teams, always as the person who gets things shipped.</>,
               <>Currently available for <span className="text-gold">freelance projects</span> and <span className="text-gold">senior engineering roles</span> that value craftsmanship and product thinking.</>,
             ].map((text, i) => (
